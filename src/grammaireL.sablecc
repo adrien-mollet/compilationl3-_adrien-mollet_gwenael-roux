@@ -3,9 +3,39 @@ Package sc;
 Helpers
 
 lettre = [['a' .. 'z'] + ['A' .. 'Z']];
+nb = ['0' .. '9']+;
 
 Tokens
 
+vide = ' ';
+nombre = nb;
+id = lettre (lettre | nb)+;
+dotcoma = ';';
+coma = ',';
+egal = '=';
+inf = '<';
+plus = '+';
+moins = '-';
+mult = '*';
+div = '/';
+po = '(';
+pf = ')';
+co = '[';
+cf = ']';
+ao = '{';
+af = '}';
+si = 'si ';
+alors = 'alors ';
+entier = 'entier';
+sinon = 'sinon ';
+tantque = 'tantque ';
+faire = 'faire ';
+retour = 'retour ';
+et = '&';
+ou = '|';
+non = '!';
+lire = 'lire';
+ecrire = 'ecrire';
 espaces = (' ' | 13 | 10)+;
 commentaire= '#' [[0 .. 0xffff] - [10 + 13]]* (10 | 13 | 10 13);
 
@@ -15,5 +45,30 @@ espaces, commentaire;
 
 Productions
 
-programme = optdecvar listedecfonc ;
-
+programme = ldvo ldf;
+var = {simple} id | {tableau} id co exp cf;
+ldvo = {non_vide} ldv dotcoma | {vide} vide;
+ldv = {non_vide} dv ldvb | {vide} vide;
+ldvb = {non_vide} coma dv ldvb | {vide} vide;
+dv = {variable} entier id | {tableau} entier id co nombre cf;
+ldf = {non_vide} df ldf | {vide} vide;
+df = id po ldv pf ldvo ibloc;
+ibloc = ao li af;
+li = {non_vide} i li | {vide} vide;
+i = {affectation} iaff | {condition} isi | {isinon} isinon | {tantque} itq | {appel} iapp | {bloc} ibloc | {retour} iret;
+iaff = var egal exp dotcoma;
+isi = si exp alors ibloc;
+isinon = isi sinon ibloc;
+itq = tantque exp faire ibloc;
+iapp = {normal} app dotcoma | {ecrire} ecrire po exp pf dotcoma;
+app = {normal} id po lexp pf | {lire} lire po pf;
+lexp = {non_vide} exp lexp2 | {vide} vide;
+lexp2 = {non_vide} coma exp lexp2 | {vide} vide;
+iret = retour exp;
+exp = {ou} exp ou exp1 | {niv_suivant} exp1;
+exp1 = {et} exp1 et exp2 | {niv_suivant} exp2;
+exp2 = {egal} exp2 egal exp3 | {inf} exp2 inf exp3 | {niv_suivant} exp3;
+exp3 = {plus} exp3 plus exp4 | {moins} exp3 moins exp4 | {niv_suivant} exp4;
+exp4 = {mult} exp4 mult exp5 | {div} exp4 div exp5 | {niv_suivant} exp5;
+exp5 = {non} non exp5 | {niv_suivant} exp6;
+exp6 = {parentheses} po exp pf | {appel} app | {var} var | {nombre} nombre;
