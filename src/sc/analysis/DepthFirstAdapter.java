@@ -154,10 +154,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLdvo(AVideLdvo node)
     {
         inAVideLdvo(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLdvo(node);
     }
 
@@ -200,10 +196,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLdv(AVideLdv node)
     {
         inAVideLdv(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLdv(node);
     }
 
@@ -250,10 +242,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLdvb(AVideLdvb node)
     {
         inAVideLdvb(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLdvb(node);
     }
 
@@ -358,10 +346,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLdf(AVideLdf node)
     {
         inAVideLdf(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLdf(node);
     }
 
@@ -474,10 +458,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLi(AVideLi node)
     {
         inAVideLi(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLi(node);
     }
 
@@ -919,10 +899,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLexp(AVideLexp node)
     {
         inAVideLexp(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLexp(node);
     }
 
@@ -969,10 +945,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVideLexp2(AVideLexp2 node)
     {
         inAVideLexp2(node);
-        if(node.getVide() != null)
-        {
-            node.getVide().apply(this);
-        }
         outAVideLexp2(node);
     }
 

@@ -7,26 +7,16 @@ import sc.analysis.*;
 @SuppressWarnings("nls")
 public final class AVideLdvb extends PLdvb
 {
-    private TVide _vide_;
 
     public AVideLdvb()
     {
         // Constructor
     }
 
-    public AVideLdvb(
-        @SuppressWarnings("hiding") TVide _vide_)
-    {
-        // Constructor
-        setVide(_vide_);
-
-    }
-
     @Override
     public Object clone()
     {
-        return new AVideLdvb(
-            cloneNode(this._vide_));
+        return new AVideLdvb();
     }
 
     @Override
@@ -35,48 +25,16 @@ public final class AVideLdvb extends PLdvb
         ((Analysis) sw).caseAVideLdvb(this);
     }
 
-    public TVide getVide()
-    {
-        return this._vide_;
-    }
-
-    public void setVide(TVide node)
-    {
-        if(this._vide_ != null)
-        {
-            this._vide_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._vide_ = node;
-    }
-
     @Override
     public String toString()
     {
-        return ""
-            + toString(this._vide_);
+        return "";
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._vide_ == child)
-        {
-            this._vide_ = null;
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 
@@ -84,12 +42,6 @@ public final class AVideLdvb extends PLdvb
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._vide_ == oldChild)
-        {
-            setVide((TVide) newChild);
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 }

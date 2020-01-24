@@ -411,12 +411,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTVide(TVide node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTNombre(TNombre node)
     {
         defaultCase(node);

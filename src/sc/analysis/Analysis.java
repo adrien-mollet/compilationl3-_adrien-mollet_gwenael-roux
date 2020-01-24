@@ -69,7 +69,6 @@ public interface Analysis extends Switch
     void caseAVarExp6(AVarExp6 node);
     void caseANombreExp6(ANombreExp6 node);
 
-    void caseTVide(TVide node);
     void caseTNombre(TNombre node);
     void caseTId(TId node);
     void caseTDotcoma(TDotcoma node);

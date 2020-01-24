@@ -7,26 +7,16 @@ import sc.analysis.*;
 @SuppressWarnings("nls")
 public final class AVideLdvo extends PLdvo
 {
-    private TVide _vide_;
 
     public AVideLdvo()
     {
         // Constructor
     }
 
-    public AVideLdvo(
-        @SuppressWarnings("hiding") TVide _vide_)
-    {
-        // Constructor
-        setVide(_vide_);
-
-    }
-
     @Override
     public Object clone()
     {
-        return new AVideLdvo(
-            cloneNode(this._vide_));
+        return new AVideLdvo();
     }
 
     @Override
@@ -35,48 +25,16 @@ public final class AVideLdvo extends PLdvo
         ((Analysis) sw).caseAVideLdvo(this);
     }
 
-    public TVide getVide()
-    {
-        return this._vide_;
-    }
-
-    public void setVide(TVide node)
-    {
-        if(this._vide_ != null)
-        {
-            this._vide_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._vide_ = node;
-    }
-
     @Override
     public String toString()
     {
-        return ""
-            + toString(this._vide_);
+        return "";
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._vide_ == child)
-        {
-            this._vide_ = null;
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 
@@ -84,12 +42,6 @@ public final class AVideLdvo extends PLdvo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._vide_ == oldChild)
-        {
-            setVide((TVide) newChild);
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 }
