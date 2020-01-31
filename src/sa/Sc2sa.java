@@ -1,7 +1,7 @@
 package sa;
 
 import sc.analysis.DepthFirstAdapter;
-import sc.node.APlusExp3;
+import sc.node.*;
 
 public class Sc2sa extends DepthFirstAdapter {
     private SaNode returnValue;
@@ -14,4 +14,70 @@ public class Sc2sa extends DepthFirstAdapter {
         op2 = (SaExp) this.returnValue;
         this.returnValue = new SaExpAdd(op1, op2);
     }
+
+    public void caseATableauVar(ATableauVar node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseATantqueI(ATantqueI node){
+        SaInst itq;
+        node.apply(this);
+        itq = (SaInstTantQue) this.returnValue;
+        this.returnValue = itq;
+    }
+
+    public void caseAVarExp6(AVarExp6 node){
+        SaExp var;
+        node.getVar().apply(this);
+        var = (SaExpVar) this.returnValue;
+        this.returnValue = var;
+    }
+
+    public void caseAVariableDv(AVariableDv node){
+        TId id = node.getId();
+        this.returnValue = new SaDecVar(id.getText());
+    }
+
+    public void caseAVideLdf(AVideLdf node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLdv(AVideLdv node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLdvb(AVideLdvb node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLdvo(AVideLdvo node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLexp(AVideLexp node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLexp2(AVideLexp2 node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+    public void caseAVideLi(AVideLi node){
+        node.apply(this);
+        this.returnValue = null;
+    }
+
+
+
+
 }
