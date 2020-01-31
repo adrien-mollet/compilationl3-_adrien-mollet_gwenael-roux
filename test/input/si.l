@@ -1,7 +1,7 @@
 entier a;
 main()
 {
-si 0 alors
+si a alors
 {ecrire(1);
 }
 }
