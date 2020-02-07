@@ -50,6 +50,96 @@ public class Sc2sa extends DepthFirstAdapter {
 
     }
 
+
+
+    public void caseANonVideLdf(ANonVideLdf node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLdv(ANonVideLdv node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLdvb(ANonVideLdvb node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLdvo(ANonVideLdvo node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLexp(ANonVideLexp node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLexp2(ANonVideLexp2 node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANonVideLi(ANonVideLi node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANormalApp(ANormalApp node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseANormalIapp(ANormalIapp node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseAOuExp(AOuExp node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseAParenthesesExp6(AParenthesesExp6 node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
     public void caseAPlusExp3(APlusExp3 node){
         SaExp op1, op2;
         node.getExp3().apply(this);
@@ -57,6 +147,39 @@ public class Sc2sa extends DepthFirstAdapter {
         node.getExp4().apply(this);
         op2 = (SaExp) this.returnValue;
         this.returnValue = new SaExpAdd(op1, op2);
+    }
+
+    public void caseAProgramme(AProgramme node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseARetourI(ARetourI node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new SaVarIndicee(id.getText(),expr);
+    }
+
+    public void caseASimpleVar(ASimpleVar node){
+        TId id = node.getId();
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = new Sa(id.getText(),expr);
+    }
+
+    public void caseATableauDv(ATableauDv node){
+        TId id = node.getId();
+        node.getId().apply(this);
+        SaDec expr;
+        node.getNombre().apply(this);
+        expr = (SaDec) this.returnValue;
+        this.returnValue = new SaDecTab(id.getText(),);
     }
 
     public void caseATableauVar(ATableauVar node){
