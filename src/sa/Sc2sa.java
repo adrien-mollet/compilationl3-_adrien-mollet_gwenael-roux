@@ -158,28 +158,21 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseARetourI(ARetourI node){
-        TId id = node.getId();
-        SaExp expr;
-        node.getExp().apply(this);
-        expr = (SaExp) this.returnValue;
-        this.returnValue = new SaVarIndicee(id.getText(),expr);
+        SaInstRetour iret;
+        node.getIret().apply(this);
+        iret = (SaInstRetour) this.returnValue;
+        this.returnValue = iret;
     }
 
     public void caseASimpleVar(ASimpleVar node){
-        TId id = node.getId();
-        SaExp expr;
-        node.getExp().apply(this);
-        expr = (SaExp) this.returnValue;
-        this.returnValue = new Sa(id.getText(),expr);
+        String id = node.getId().getText();
+        this.returnValue = new SaVarSimple(id);
     }
 
     public void caseATableauDv(ATableauDv node){
-        TId id = node.getId();
-        node.getId().apply(this);
-        SaDec expr;
-        node.getNombre().apply(this);
-        expr = (SaDec) this.returnValue;
-        this.returnValue = new SaDecTab(id.getText(),);
+        String id = node.getId().getText();
+        int taille = Integer.parseInt(node.getNombre().getText());
+        this.returnValue = new SaDecTab(id,taille);
     }
 
     public void caseATableauVar(ATableauVar node){
@@ -191,17 +184,17 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseATantqueI(ATantqueI node){
-        SaInst itq;
-        node.apply(this);
-        itq = (SaInstTantQue) this.returnValue;
-        this.returnValue = itq;
+        SaInstTantQue tantQue;
+        node.getItq().apply(this);
+        tantQue = (SaInstTantQue) this.returnValue;
+        this.returnValue = tantQue;
     }
 
     public void caseAVarExp6(AVarExp6 node){
-        SaExp var;
+        SaVar var;
         node.getVar().apply(this);
-        var = (SaExpVar) this.returnValue;
-        this.returnValue = var;
+        var = (SaVar) this.returnValue;
+        this.returnValue = new SaExpVar(var);
     }
 
     public void caseAVariableDv(AVariableDv node){
