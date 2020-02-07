@@ -7,8 +7,6 @@ nb = ['0' .. '9']+;
 
 Tokens
 
-nombre = nb;
-id = lettre (lettre | nb)*;
 dotcoma = ';';
 coma = ',';
 egal = '=';
@@ -24,19 +22,21 @@ cf = ']';
 ao = '{';
 af = '}';
 si = 'si ';
-alors = 'alors ';
-entier = 'entier ';
-sinon = 'sinon ';
-tantque = 'tantque ';
-faire = 'faire ';
-retour = 'retour ';
 et = '&';
 ou = '|';
 non = '!';
 lire = 'lire';
 ecrire = 'ecrire';
+alors = 'alors';
+entier = 'entier ';
+sinon = 'sinon';
+tantque = 'tantque';
+faire = 'faire';
+retour = 'retour';
 espaces = (' ' | 13 | 10)+;
 commentaire= '#' [[0 .. 0xffff] - [10 + 13]]* (10 | 13 | 10 13);
+nombre = nb;
+id = lettre (lettre | nb)*;
 
 Ignored Tokens
 
