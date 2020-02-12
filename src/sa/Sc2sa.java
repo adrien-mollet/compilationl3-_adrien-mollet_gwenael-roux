@@ -42,55 +42,123 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseADf(ADf node){
-        /*TId id = node.getId();
+        TId id = node.getId();
         SaLDec ldv;
+        node.getLdv().apply(this);
+        ldv = (SaLDec) this.returnValue;
         SaLDec ldvo;
-        SaInstBloc ibloc;
-        node.getId().apply(this);*/
+        node.getLdvo().apply(this);
+        ldvo = (SaLDec) this.returnValue;
+        SaInst ibloc;
+        node.getIbloc().apply(this);
+        ibloc = (SaInst) this.returnValue;
+        this.returnValue = new SaDecFonc(id.getText(),ldv,ldvo,ibloc);
     }
 
     public void caseADivExp4(ADivExp4 node){
+        SaExp exp4;
+        node.getExp4().apply(this);
+        exp4 = (SaExp) this.returnValue;
 
+        SaExp exp5;
+        node.getExp5().apply(this);
+        exp5 = (SaExp) this.returnValue;
+
+        this.returnValue = new SaExpDiv(exp4,exp5);
     }
 
     public void caseAEcrireIapp(AEcrireIapp node){
-
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue  = new SaInstEcriture(expr);
     }
 
     public void caseAEgalExp2(AEgalExp2 node){
+        SaExp exp2;
+        node.getExp2().apply(this);
+        exp2 = (SaExp) this.returnValue;
 
+        SaExp exp3;
+        node.getExp3().apply(this);
+        exp3 = (SaExp) this.returnValue;
+
+        this.returnValue = new SaExpEqual(exp2,exp3);
     }
 
     public void caseAEtExp1(AEtExp1 node){
+        SaExp exp1;
+        node.getExp1().apply(this);
+        exp1 = (SaExp) this.returnValue;
 
+        SaExp exp2;
+        node.getExp2().apply(this);
+        exp2 = (SaExp) this.returnValue;
+
+        this.returnValue = new SaExpAnd(exp1,exp2);
     }
 
     public void caseAIaff(AIaff node){
-
+        SaVar lhs;
+        node.getVar().apply(this);
+        lhs = (SaVar) this.returnValue;
+        SaExp rhs;
+        node.getExp().apply(this);
+        rhs = (SaExp) this.returnValue;
+        this.returnValue = new SaInstAffect(lhs,rhs);
     }
 
     public void caseAIbloc(AIbloc node){
-
+        SaLInst li;
+        node.getLi().apply(this);
+        li = (SaLInst) this.returnValue;
+        this.returnValue = li;
     }
 
     public void caseAInfExp2(AInfExp2 node){
+        SaExp exp2;
+        node.getExp2().apply(this);
+        exp2 = (SaExp) this.returnValue;
 
+        SaExp exp3;
+        node.getExp3().apply(this);
+        exp3 = (SaExp) this.returnValue;
+
+        this.returnValue = new SaExpInf(exp2,exp3);
     }
 
     public void caseAIret(AIret node){
-
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        this.returnValue = expr;
     }
 
     public void caseAIsi(AIsi node){
-
+        SaExp expr;
+        node.getExp().apply(this);
+        expr = (SaExp) this.returnValue;
+        SaInst alors;
+        node.getAlors().apply(this);
+        alors = (SaInst) this.returnValue;
+        this.returnValue = new SaInstSi(expr,alors,null);
     }
 
     public void caseAIsinon(AIsinon node){
-
+        SaInstSi isi;
+        node.getIsi().apply(this);
+        isi = (SaInstSi) this.returnValue;
+        SaInstBloc ibloc;
+        node.getIbloc().apply(this);
+        ibloc = (SaInstBloc) this.returnValue;
+        this.returnValue = new SaInstSi(isi.getTest(),isi.getAlors(),ibloc);
     }
 
     public void caseAIsinonI(AIsinonI node){
-
+        SaInstSi isinon;
+        node.getIsinon().apply(this);
+        isinon = (SaInstSi) this.returnValue;
+        this.returnValue = isinon;
     }
 
     public void caseAItq(AItq node){
@@ -104,7 +172,7 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseALireApp(ALireApp node){
-       this.returnValue = new SaExpLire();
+        this.returnValue = new SaExpLire();
     }
 
     public void caseAMoinsExp3(AMoinsExp3 node){
