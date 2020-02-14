@@ -318,13 +318,13 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseANonVideLi(ANonVideLi node){
-        SaInst inst;
+        SaLInst inst;
         node.getI().apply(this);
-        inst = (SaInst) this.returnValue;
+        inst = (SaLInst) this.returnValue;
         SaLInst li;
         node.getLi().apply(this);
         li = (SaLInst) this.returnValue;
-        this.returnValue = new SaLInst(inst,li);
+        this.returnValue = new SaLInst(inst.getTete(),li);
     }
 
     public void caseANormalApp(ANormalApp node){
