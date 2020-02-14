@@ -31,7 +31,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstBloc bloc;
         node.getIbloc().apply(this);
         bloc = (SaInstBloc) this.returnValue;
-        this.returnValue = new SaInstBloc(bloc.getVal());
+        this.returnValue = bloc;
     }
 
     public void caseAConditionI(AConditionI node){
@@ -119,7 +119,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaLInst li;
         node.getLi().apply(this);
         li = (SaLInst) this.returnValue;
-        this.returnValue = li;
+        this.returnValue = new SaInstBloc(li);
     }
 
     public void caseAInfExp2(AInfExp2 node){
