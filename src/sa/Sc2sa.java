@@ -442,6 +442,7 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
 
-
-
+    public SaNode getRoot() {
+        return returnValue;
+    }
 }
