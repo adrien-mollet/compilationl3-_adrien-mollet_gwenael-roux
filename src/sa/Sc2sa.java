@@ -21,9 +21,9 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseAAppelI(AAppelI node){
-        SaAppel appel;
+        SaInst appel;
         node.getIapp().apply(this);
-        appel = (SaAppel) this.returnValue;
+        appel = (SaInst) this.returnValue;
         this.returnValue = appel;
     }
 
@@ -67,11 +67,18 @@ public class Sc2sa extends DepthFirstAdapter {
         this.returnValue = new SaExpDiv(exp4,exp5);
     }
 
-    public void caseAEcrireIapp(AEcrireIapp node){
+    public void caseAEcritureI(AEcritureI node){
+        SaInstEcriture instEcriture;
+        node.getIecriture().apply(this);
+        instEcriture = (SaInstEcriture) this.returnValue;
+        this.returnValue = instEcriture;
+    }
+
+    public void caseAEcrireIecriture(AEcrireIecriture node){
         SaExp expr;
         node.getExp().apply(this);
         expr = (SaExp) this.returnValue;
-        this.returnValue  = new SaInstEcriture(expr);
+        this.returnValue = new SaInstEcriture(expr);
     }
 
     public void caseAEgalExp2(AEgalExp2 node){
