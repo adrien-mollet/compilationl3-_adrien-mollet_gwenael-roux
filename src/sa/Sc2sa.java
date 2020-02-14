@@ -346,7 +346,10 @@ public class Sc2sa extends DepthFirstAdapter {
         SaExp expr;
         node.getExp().apply(this);
         expr = (SaExp) this.returnValue;
-        this.returnValue = expr;
+        SaExp expr1;
+        node.getExp1().apply(this);
+        expr1 = (SaExp) this.returnValue;
+        this.returnValue = new SaExpOr(expr,expr1);
     }
 
     public void caseAParenthesesExp6(AParenthesesExp6 node){
