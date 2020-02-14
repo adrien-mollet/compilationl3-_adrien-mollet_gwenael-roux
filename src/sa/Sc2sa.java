@@ -10,7 +10,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstAffect op;
         node.getIaff().apply(this);
         op = (SaInstAffect) this.returnValue;
-        this.returnValue = op;
+        this.returnValue = new SaLInst(op,null);
     }
 
     public void caseAAppelExp6(AAppelExp6 node){
@@ -24,21 +24,21 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInst appel;
         node.getIapp().apply(this);
         appel = (SaInst) this.returnValue;
-        this.returnValue = appel;
+        this.returnValue = new SaLInst(appel,null);;
     }
 
     public void caseABlocI(ABlocI node){
         SaInstBloc bloc;
         node.getIbloc().apply(this);
         bloc = (SaInstBloc) this.returnValue;
-        this.returnValue = bloc;
+        this.returnValue = new SaLInst(bloc,null);;
     }
 
     public void caseAConditionI(AConditionI node){
         SaInstSi si;
         node.getIsi().apply(this);
         si = (SaInstSi) this.returnValue;
-        this.returnValue = si;
+        this.returnValue = new SaLInst(si,null);;
     }
 
     public void caseADf(ADf node){
@@ -71,7 +71,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstEcriture instEcriture;
         node.getIecriture().apply(this);
         instEcriture = (SaInstEcriture) this.returnValue;
-        this.returnValue = instEcriture;
+        this.returnValue = new SaLInst(instEcriture,null);;
     }
 
     public void caseAEcrireIecriture(AEcrireIecriture node){
@@ -165,7 +165,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstSi isinon;
         node.getIsinon().apply(this);
         isinon = (SaInstSi) this.returnValue;
-        this.returnValue = isinon;
+        this.returnValue = new SaLInst(isinon,null);;
     }
 
     public void caseAItq(AItq node){
@@ -379,7 +379,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstRetour iret;
         node.getIret().apply(this);
         iret = (SaInstRetour) this.returnValue;
-        this.returnValue = iret;
+        this.returnValue = new SaLInst(iret,null);;
     }
 
     public void caseASimpleVar(ASimpleVar node){
@@ -405,7 +405,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstTantQue tantQue;
         node.getItq().apply(this);
         tantQue = (SaInstTantQue) this.returnValue;
-        this.returnValue = tantQue;
+        this.returnValue = new SaLInst(tantQue,null);;
     }
 
     public void caseAVarExp6(AVarExp6 node){
