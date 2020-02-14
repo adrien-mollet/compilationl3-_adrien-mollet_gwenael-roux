@@ -71,7 +71,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstEcriture instEcriture;
         node.getIecriture().apply(this);
         instEcriture = (SaInstEcriture) this.returnValue;
-        this.returnValue = instEcriture;
+        this.returnValue = new SaLInst(instEcriture,null);
     }
 
     public void caseAEcrireIecriture(AEcrireIecriture node){
