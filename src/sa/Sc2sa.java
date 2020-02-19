@@ -14,10 +14,10 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseAAppelExp6(AAppelExp6 node){
-        SaExpAppel appel;
+        SaAppel appel;
         node.getApp().apply(this);
-        appel = (SaExpAppel) this.returnValue;
-        this.returnValue = new SaExpAppel(appel.getVal());
+        appel = (SaAppel) this.returnValue;
+        this.returnValue = new SaExpAppel(appel);
     }
 
     public void caseAAppelI(AAppelI node){
@@ -38,7 +38,7 @@ public class Sc2sa extends DepthFirstAdapter {
         SaInstSi si;
         node.getIsi().apply(this);
         si = (SaInstSi) this.returnValue;
-        this.returnValue = new SaLInst(si,null);;
+        this.returnValue = new SaLInst(si,null);
     }
 
     public void caseADf(ADf node){
@@ -379,10 +379,10 @@ public class Sc2sa extends DepthFirstAdapter {
     }
 
     public void caseARetourI(ARetourI node){
-        SaInstRetour iret;
+        SaExp iret;
         node.getIret().apply(this);
-        iret = (SaInstRetour) this.returnValue;
-        this.returnValue = new SaLInst(iret,null);;
+        iret = (SaExp) this.returnValue;
+        this.returnValue = new SaLInst(new SaInstRetour(iret),null);;
     }
 
     public void caseASimpleVar(ASimpleVar node){
