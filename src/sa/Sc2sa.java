@@ -146,8 +146,8 @@ public class Sc2sa extends DepthFirstAdapter {
         node.getExp().apply(this);
         expr = (SaExp) this.returnValue;
         SaInst alors;
-        node.getAlors().apply(this);
-        alors = (SaInst) this.returnValue;
+        node.getIbloc().apply(this);
+        alors = (SaInstBloc) this.returnValue;
         this.returnValue = new SaInstSi(expr,alors,null);
     }
 
