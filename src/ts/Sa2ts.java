@@ -14,6 +14,7 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
     }
 
     public Ts getTableGlobale(){
+        tableGlobale.affiche(System.out);
         return tableGlobale;
     }
 
@@ -46,8 +47,6 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
                 vars.accept(this);
             }
 
-            //node.getCorps().accept(this);
-
             this.tableGlobale.addFct(node.getNom(),tailleParam,this.tableCourante,node);
         } else {
             System.err.println("La fonction "+node.getNom()+" existe déjà !");
@@ -74,7 +73,6 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
 
     public Void visit(SaVarSimple node) {
-        defaultIn(node);
         if (node.tsItem.portee != this.tableGlobale){
             Ts tableLocale = tableGlobale.getTableLocale(node.tsItem.portee.toString());
             TsItemVar param = tableLocale.getVar(node.getNom());
@@ -103,12 +101,10 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
             }
         }
         this.tableGlobale.addVar(node.getNom(),node.tsItem.getTaille());
-        defaultOut(node);
         return null;
     }
 
     public Void visit(SaAppel node) {
-        defaultIn(node);
         TsItemFct tsItemFct = this.tableGlobale.getFct(node.getNom());
         if(tsItemFct == null){
             System.err.println("la fonction "+node.getNom()+" n'existe pas");
@@ -116,12 +112,10 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
         else {
             node.tsItem = tsItemFct;
         }
-        defaultOut(node);
         return null;
     }
 
     public Void visit(SaVarIndicee node) {
-        defaultIn(node);
         TsItemVar tsItemVar = this.tableGlobale.getVar(node.getNom());
         if(tsItemVar == null){
             System.err.println("le tableau "+node.getNom()+" n'existe pas");
@@ -129,7 +123,6 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
         else {
             node.tsItem = tsItemVar;
         }
-        defaultOut(node);
         return null;
     }
 }
