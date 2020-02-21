@@ -22,6 +22,7 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
     public Void visit(SaDecTab node) {
         defaultIn(node);
+        this.tableGlobale.addVar(node.getNom(),node.tsItem.getTaille());
         defaultOut(node);
         return null;
     }
@@ -34,7 +35,7 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
     public Void visit(SaDecVar node) {
         defaultIn(node);
-
+        this.tableGlobale.addVar(node.getNom(),node.tsItem.getTaille());
         defaultOut(node);
         return null;
     }
@@ -48,21 +49,25 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
             }
         }
-        this.tableGlobale.addVar(node.getNom(),node.tsItem.getTaille());
+
         defaultOut(node);
         return null;
     }
 
     public Void visit(SaAppel node) {
         defaultIn(node);
+        if(this.tableGlobale.fonctions.containsKey(node.getNom())){
 
+        }
         defaultOut(node);
         return null;
     }
 
     public Void visit(SaVarIndicee node) {
         defaultIn(node);
+        if(this.tableGlobale.variables.containsKey(node.getNom())){
 
+        }
         defaultOut(node);
         return null;
     }
