@@ -2,17 +2,14 @@ package ts;
 
 import sa.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
     private Ts tableGlobale;
-    private List<Ts> tablesLocales;
+    private Ts tableCourante;
 
     public Sa2ts(SaNode saNode) {
         tableGlobale = new Ts();
-        tablesLocales = new ArrayList<>();
+        tableCourante = this.tableGlobale;
         saNode.accept(this);
     }
 
@@ -21,27 +18,54 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
     }
 
     public Void visit(SaDecTab node) {
-        defaultIn(node);
-        if(!tableGlobale.variables.containsKey(node.getNom())){
+        if(tableGlobale.getVar(node.getNom()) == null){
             tableGlobale.addVar(node.getNom(),node.getTaille());
+        } else {
+            System.err.println("Le tableau "+node.getNom()+" existe déjà !");
         }
-        defaultOut(node);
         return null;
     }
 
     public Void visit(SaDecFonc node) {
-        defaultIn(node);
-        if(!tableGlobale.fonctions.containsKey(node.getNom())){
-            tableGlobale.addFct(node.getNom(),node.tsItem.nbArgs,node.tsItem.getTable(),node.tsItem.saDecFonc);
-            node.accept(this);
+        if (tableCourante.getFct(node.getNom()) == null){
+            this.tableCourante = new Ts();
+
+            SaLDec params = node.getParametres();
+            int tailleParam = 0;
+            if (params != null){
+                tailleParam = params.length();
+                for (int i = 0; i< tailleParam ; ++i){
+                    SaDec parametre = params.getTete();
+                    tableCourante.addParam(parametre.getNom());
+                    params = params.getQueue();
+                }
+            }
+
+            SaLDec vars = node.getVariable();
+            if (vars != null){
+                vars.accept(this);
+            }
+
+            //node.getCorps().accept(this);
+
+            this.tableGlobale.addFct(node.getNom(),tailleParam,this.tableCourante,node);
+        } else {
+            System.err.println("La fonction "+node.getNom()+" existe déjà !");
         }
-        defaultOut(node);
         return null;
     }
 
     public Void visit(SaDecVar node) {
-        defaultIn(node);
-        if (node.tsItem.portee != tableGlobale){
+        if(tableCourante.getVar(node.getNom()) == null){
+            if (node.tsItem.isParam){
+                tableCourante.addParam(node.getNom());
+            } else {
+                tableCourante.addVar(node.getNom(),1);
+            }
+        } else {
+            System.err.println("La variable/le paramètre "+node.getNom()+" existe déjà !");
+        }
+        /*if (node.tsItem.portee != tableGlobale){
             Ts tableLocale = tableGlobale.getTableLocale(node.tsItem.portee.toString());
             if(!tableLocale.variables.containsKey(node.getNom())){
                 if (node.tsItem.isParam){
@@ -54,8 +78,7 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
             if(!tableGlobale.variables.containsKey(node.getNom())){
                 tableGlobale.addVar(node.getNom(),1);
             }
-        }
-        defaultOut(node);
+        }*/
         return null;
     }
 
