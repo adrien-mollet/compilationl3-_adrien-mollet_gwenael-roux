@@ -22,19 +22,39 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
     public Void visit(SaDecTab node) {
         defaultIn(node);
+        if(!tableGlobale.variables.containsKey(node.getNom())){
+            tableGlobale.addVar(node.getNom(),node.getTaille());
+        }
         defaultOut(node);
         return null;
     }
 
     public Void visit(SaDecFonc node) {
         defaultIn(node);
+        if(!tableGlobale.fonctions.containsKey(node.getNom())){
+            tableGlobale.addFct(node.getNom(),node.tsItem.nbArgs,node.tsItem.getTable(),node.tsItem.saDecFonc);
+            node.accept(this);
+        }
         defaultOut(node);
         return null;
     }
 
     public Void visit(SaDecVar node) {
         defaultIn(node);
-
+        if (node.tsItem.portee != tableGlobale){
+            Ts tableLocale = tableGlobale.getTableLocale(node.tsItem.portee.toString());
+            if(!tableLocale.variables.containsKey(node.getNom())){
+                if (node.tsItem.isParam){
+                    tableLocale.addParam(node.getNom());
+                } else {
+                    tableLocale.addVar(node.getNom(),1);
+                }
+            }
+        } else {
+            if(!tableGlobale.variables.containsKey(node.getNom())){
+                tableGlobale.addVar(node.getNom(),1);
+            }
+        }
         defaultOut(node);
         return null;
     }
