@@ -57,28 +57,18 @@ public class Sa2ts extends SaDepthFirstVisitor<Void> {
 
     public Void visit(SaDecVar node) {
         if(tableCourante.getVar(node.getNom()) == null){
-            if (node.tsItem.isParam){
-                tableCourante.addParam(node.getNom());
-            } else {
+            if (node.tsItem == null){
                 tableCourante.addVar(node.getNom(),1);
+            } else {
+                if (node.tsItem.isParam){
+                    tableCourante.addParam(node.getNom());
+                } else {
+                    tableCourante.addVar(node.getNom(),1);
+                }
             }
         } else {
             System.err.println("La variable/le paramètre "+node.getNom()+" existe déjà !");
         }
-        /*if (node.tsItem.portee != tableGlobale){
-            Ts tableLocale = tableGlobale.getTableLocale(node.tsItem.portee.toString());
-            if(!tableLocale.variables.containsKey(node.getNom())){
-                if (node.tsItem.isParam){
-                    tableLocale.addParam(node.getNom());
-                } else {
-                    tableLocale.addVar(node.getNom(),1);
-                }
-            }
-        } else {
-            if(!tableGlobale.variables.containsKey(node.getNom())){
-                tableGlobale.addVar(node.getNom(),1);
-            }
-        }*/
         return null;
     }
 
