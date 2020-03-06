@@ -1,14 +1,21 @@
 package sa;
 
 import c3a.*;
+import ts.Ts;
 
 public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     private C3a c3a;
+    private Ts table;
 
-    private Sa2c3a(SaNode root){
+    public Sa2c3a(SaNode root, Ts table){
         this.c3a = new C3a();
+        this.table = table;
         root.accept(this);
+    }
+
+    public C3a getC3a() {
+        return c3a;
     }
 
     @Override
@@ -46,22 +53,32 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaInstTantQue node) {
+        C3aTemp t0 = c3a.newTemp();
+        //TODO
         return super.visit(node);
     }
 
     @Override
-    public C3aOperand visit(SaLInst node) {
-        return super.visit(node);
+    public C3aOperand visit(SaLInst node) { //TODO
+        C3aOperand operand = node.getTete().accept(this);
+        return null;
     }
 
     @Override
-    public C3aOperand visit(SaDecFonc node) {
-        return super.visit(node);
+    public C3aOperand visit(SaDecFonc node){
+        C3aInstFBegin begin = new C3aInstFBegin(node.tsItem,"entree fonction");
+        c3a.ajouteInst(begin);
+
     }
 
     @Override
     public C3aOperand visit(SaInstAffect node) {
-        return super.visit(node);
+        C3aInstAffect instAffect = new C3aInstAffect(
+                node.getLhs().accept(this),
+                node.getRhs().accept(this),
+                "");
+        c3a.ajouteInst(instAffect);
+        return null;
     }
 
     @Override
@@ -158,7 +175,7 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaInstBloc node) {
-        return super.visit(node);
+        return node.getVal().accept(this);
     }
 
     @Override
