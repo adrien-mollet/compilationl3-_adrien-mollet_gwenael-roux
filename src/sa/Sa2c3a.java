@@ -68,7 +68,7 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
     public C3aOperand visit(SaDecFonc node){
         C3aInstFBegin begin = new C3aInstFBegin(node.tsItem,"entree fonction");
         c3a.ajouteInst(begin);
-
+        return null;
     }
 
     @Override
