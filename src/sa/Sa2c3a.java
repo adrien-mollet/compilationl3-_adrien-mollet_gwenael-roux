@@ -2,6 +2,7 @@ package sa;
 
 import c3a.*;
 import ts.Ts;
+import ts.TsItemFct;
 
 public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
@@ -31,7 +32,7 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaExp node) {
-        return node.accept(this);
+        return new C3aConstant(3);
     }
 
     @Override
@@ -66,9 +67,11 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaDecFonc node){
-        C3aInstFBegin begin = new C3aInstFBegin(node.tsItem,"entree fonction");
+        TsItemFct fct = table.getFct(node.getNom());
+        C3aInstFBegin begin = new C3aInstFBegin(fct,"entree fonction");
         c3a.ajouteInst(begin);
-
+        node.getCorps().accept(this);
+        return null;
     }
 
     @Override
