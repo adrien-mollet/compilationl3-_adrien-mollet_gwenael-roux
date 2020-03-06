@@ -1,8 +1,6 @@
 package sa;
 
-import c3a.C3a;
-import c3a.C3aOperand;
-import c3a.C3aVar;
+import c3a.*;
 
 public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
@@ -15,6 +13,7 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaProg node) {
+        node.getFonctions().accept(this);
         return super.visit(node);
     }
 
@@ -55,11 +54,6 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaDecFonc node) {
-        return super.visit(node);
-    }
-
-    @Override
-    public C3aOperand visit(SaDecVar node) {
         return super.visit(node);
     }
 
@@ -130,12 +124,18 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaExpNot node) {
+        C3aOperand op1  = node.getOp1().accept(this);
+        C3aOperand op2  = node.getOp2().accept(this);
+        C3aTemp result = c3a.newTemp();
+        c3a.ajouteInst(new C3aInstJumpIfNotEqual(op1,op2,result,""));
         return super.visit(node);
     }
 
     @Override
     public C3aOperand visit(SaExpLire node) {
-        return super.visit(node);
+        C3aOperand argument = node.accept(this);
+        c3a.ajouteInst(new C3aInstRead(argument,""));
+        return null;
     }
 
     @Override
@@ -150,12 +150,17 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
 
     @Override
     public C3aOperand visit(SaInstRetour node) {
-        return super.visit(node);
+        C3aOperand argument = node.getVal().accept(this);
+        c3a.ajouteInst(new C3aInstReturn(argument,""));
+        return null;
     }
 
     @Override
     public C3aOperand visit(SaLExp node) {
-        return super.visit(node);
+        C3aOperand argument = node.getTete().accept(this);
+        c3a.ajouteInst(new C3aInstParam(argument,""));
+        node.getQueue().accept(this);
+        return null;
     }
 
     @Override
