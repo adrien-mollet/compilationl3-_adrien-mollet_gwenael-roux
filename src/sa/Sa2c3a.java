@@ -14,32 +14,34 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
     @Override
     public C3aOperand visit(SaProg node) {
         node.getFonctions().accept(this);
-        return super.visit(node);
+        return null;
     }
 
     @Override
     public C3aOperand visit(SaDecTab node) {
-        return super.visit(node);
+        return super.visit(node); //TODO (A laisser ?)
     }
 
     @Override
     public C3aOperand visit(SaExp node) {
-        return super.visit(node);
+        return node.accept(this);
     }
 
     @Override
     public C3aOperand visit(SaExpInt node) {
-        return super.visit(node);
+        return new C3aConstant(node.getVal());
     }
 
     @Override
     public C3aOperand visit(SaExpVar node) {
-        return super.visit(node);
+        return node.accept(this);
     }
 
     @Override
     public C3aOperand visit(SaInstEcriture node) {
-        return super.visit(node);
+        C3aInstWrite inst = new C3aInstWrite(node.getArg().accept(this),"");
+        c3a.ajouteInst(inst);
+        return null;
     }
 
     @Override
