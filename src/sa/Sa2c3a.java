@@ -71,6 +71,8 @@ public class Sa2c3a extends SaDepthFirstVisitor<C3aOperand> {
         C3aInstFBegin begin = new C3aInstFBegin(fct,"entree fonction");
         c3a.ajouteInst(begin);
         node.getCorps().accept(this);
+        C3aInstFEnd end = new C3aInstFEnd("");
+        c3a.ajouteInst(end);
         return null;
     }
 
