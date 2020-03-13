@@ -172,7 +172,7 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aTemp oper) {
-        return null;
+        return new NasmRegister(oper.num);
     }
 
     @Override
