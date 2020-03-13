@@ -1,7 +1,6 @@
 package c3a;
 
-import nasm.Nasm;
-import nasm.NasmOperand;
+import nasm.*;
 import ts.Ts;
 import ts.TsItemFct;
 
@@ -105,6 +104,16 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aInstWrite inst) {
+        NasmOperand label = null;
+        if(inst.label != null){
+            label = inst.label.accept(this);
+        }
+
+        NasmRegister reg_eax = nasm.newRegister();
+        reg_eax.colorRegister(Nasm.REG_EAX);
+        NasmOperand operand = inst.op1.accept(this);
+        nasm.ajouteInst(new NasmMov(label,reg_eax,operand,""));
+        nasm.ajouteInst(new NasmCall(null,inst.result.accept(this),""));
         return null;
     }
 
