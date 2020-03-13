@@ -17,6 +17,7 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
         this.nasm = new Nasm(tableGlobale);
         this.currentFct = null;
         for (C3aInst inst: c3a.listeInst){
+            System.out.println(inst);
             inst.accept(this);
         }
     }
@@ -34,7 +35,8 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
         NasmOperand op1 = inst.op1.accept(this);
         NasmOperand op2 = inst.op2.accept(this);
         NasmOperand dest = inst.result.accept(this);
-        nasm.ajouteInst(new NasmMov(label,dest,op1,""));
+        NasmInst inst1 = new NasmMov(null,dest,op1,"");
+        nasm.ajouteInst(inst1);
         nasm.ajouteInst(new NasmAdd(null,dest,op2,""));
         return null;
     }
