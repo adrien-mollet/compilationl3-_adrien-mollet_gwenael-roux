@@ -132,6 +132,9 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aInstParam inst) {
+        NasmOperand label = inst.label.accept(this);
+        NasmOperand operand = inst.op1.accept(this);
+        nasm.ajouteInst(new NasmPush(label,operand,""));
         return null;
     }
 
@@ -157,7 +160,7 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aConstant oper) {
-        return null;
+        return new NasmConstant(oper.val);
     }
 
     @Override
