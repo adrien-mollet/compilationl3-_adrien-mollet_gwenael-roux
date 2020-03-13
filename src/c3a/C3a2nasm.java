@@ -165,7 +165,7 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aLabel oper) {
-        return null;
+        return new NasmLabel(oper.toString());
     }
 
     @Override
