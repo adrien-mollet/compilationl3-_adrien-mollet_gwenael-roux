@@ -1,9 +1,6 @@
 package c3a;
 
-import nasm.Nasm;
-import nasm.NasmAdd;
-import nasm.NasmMov;
-import nasm.NasmOperand;
+import nasm.*;
 import ts.Ts;
 import ts.TsItemFct;
 
@@ -19,6 +16,9 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
         this.tableGlobale = table;
         this.nasm = new Nasm(tableGlobale);
         this.currentFct = null;
+        for (C3aInst inst: c3a.listeInst){
+            inst.accept(this);
+        }
     }
 
     public Nasm getNasm() {
@@ -46,6 +46,19 @@ public class C3a2nasm implements C3aVisitor<NasmOperand> {
 
     @Override
     public NasmOperand visit(C3aInstFBegin inst) {
+        currentFct = inst.val;
+        NasmOperand label = null;
+        if (inst.label != null){
+            label = inst.label.accept(this);
+        }
+        NasmRegister reg_ebp = nasm.newRegister();
+        NasmRegister reg_esp = nasm.newRegister();
+        reg_ebp.colorRegister(Nasm.REG_EBP);
+        reg_esp.colorRegister(Nasm.REG_ESP);
+        nasm.ajouteInst(new NasmPush(label,reg_ebp,"sauvegarde la valeur de ebp"));
+        nasm.ajouteInst(new NasmMov(null,reg_ebp,reg_esp,"nouvelle valeur de ebp"));
+        int nb_var = currentFct.getTable().nbVar();
+        nasm.ajouteInst(new NasmSub(null,reg_esp,new NasmConstant(nb_var*4),"allocation des variables locales"));
         return null;
     }
 
