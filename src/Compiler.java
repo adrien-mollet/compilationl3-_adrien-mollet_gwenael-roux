@@ -1,3 +1,4 @@
+import fg.Fg;
 import sc.parser.*;
 import sc.lexer.*;
 import sc.node.*;
@@ -52,7 +53,6 @@ public class Compiler
 
 			System.out.print("[BUILD C3A]");
 			C3a c3a = new Sa2c3a(saRoot, table).getC3a();
-
 			System.out.print("[PRINT C3A] ");
 			c3a.affiche(baseName);
 
@@ -65,11 +65,13 @@ public class Compiler
 			System.out.println("[PRINT PRE NASM] ");
 			nasm.affichePre(baseName);
 
-      /*
-	    System.out.print("[BUILD FG] ");
-	    Fg fg = new Fg(nasm);
-	    System.out.print("[PRINT FG] ");
-	    fg.affiche(baseName);
+
+			System.out.print("[BUILD FG] ");
+			Fg fg = new Fg(nasm);
+			System.out.print("[PRINT FG] ");
+			fg.affiche(baseName);
+
+	    /*
 
 	    System.out.println("[SOLVE FG]");
 	    FgSolution fgSolution = new FgSolution(nasm, fg);
