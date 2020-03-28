@@ -66,6 +66,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -73,6 +76,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -80,6 +86,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -87,6 +96,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -94,6 +106,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -101,6 +116,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -108,6 +126,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -115,6 +136,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -122,6 +146,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -129,6 +156,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -136,6 +166,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -143,6 +176,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -150,6 +186,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -157,6 +196,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -164,6 +206,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -171,6 +216,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -178,6 +226,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -185,6 +236,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -192,6 +246,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -199,6 +256,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -206,6 +266,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
@@ -213,6 +276,9 @@ public class Fg implements NasmVisitor <Void> {
         if(inst.label != null){
             label2Inst.put(inst.label.toString(),inst);
         }
+        Node node = graph.newNode();
+        inst2Node.put(inst,node);
+        node2Inst.put(node,inst);
         return null;
     }
 
