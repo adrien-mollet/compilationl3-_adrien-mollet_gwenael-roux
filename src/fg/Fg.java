@@ -21,6 +21,8 @@ public class Fg implements NasmVisitor <Void> {
         for (NasmInst inst: nasm.listeInst){
             inst.accept(this);
         }
+
+        EdgeHandler edgeHandler = new EdgeHandler();
     }
 
     public void affiche(String baseFileName){
@@ -287,5 +289,208 @@ public class Fg implements NasmVisitor <Void> {
     public Void visit(NasmLabel operand){return null;}
     public Void visit(NasmRegister operand){return null;}
 
+    private class EdgeHandler implements NasmVisitor<Void> {
 
+        private List<Node> graphNodes;
+
+        public EdgeHandler() {
+            this.graphNodes = Arrays.asList(graph.nodeArray());
+            this.createEdges();
+        }
+
+        private void createEdges(){
+            for (NasmInst inst: nasm.listeInst){
+                inst.accept(this);
+            }
+        }
+
+        @Override
+        public Void visit(NasmAdd inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmCall inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmDiv inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJe inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJle inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJne inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmMul inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmInst inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmOr inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmCmp inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJge inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJl inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmNot inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmPop inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmRet inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmXor inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmAnd inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJg inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmJmp inst) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmMov inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmPush inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmSub inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmEmpty inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmAddress operand) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmConstant operand) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmLabel operand) {
+            return null;
+        }
+
+        @Override
+        public Void visit(NasmRegister operand) {
+            return null;
+        }
+    }
 }
