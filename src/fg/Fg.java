@@ -308,7 +308,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmAdd inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -324,7 +324,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmDiv inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -350,7 +350,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmMul inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -391,7 +391,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmPop inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -402,7 +402,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmRet inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -433,7 +433,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmMov inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -444,7 +444,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmPush inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -455,7 +455,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmSub inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
@@ -466,7 +466,7 @@ public class Fg implements NasmVisitor <Void> {
         public Void visit(NasmEmpty inst) {
             Node currentNode = inst2Node.get(inst);
             int index = graphNodes.indexOf(currentNode);
-            if (index < graphNodes.size()){
+            if (index+1 < graphNodes.size()){
                 Node destinationNode = graphNodes.get(index+1);
                 graph.addEdge(currentNode,destinationNode);
             }
