@@ -453,6 +453,11 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmJmp inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode = inst2Node.get(label2Inst.get(inst.address.toString()));
+            if(destinationNode != null){
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
