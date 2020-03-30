@@ -338,6 +338,14 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmJe inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
@@ -348,6 +356,14 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmJne inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
