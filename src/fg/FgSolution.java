@@ -2,6 +2,8 @@ package fg;
 import util.graph.*;
 import nasm.*;
 import util.intset.*;
+
+import java.awt.*;
 import java.io.*;
 import java.util.*;
 
@@ -161,6 +163,24 @@ public class FgSolution{
 
 		@Override
 		public Void visit(NasmSub inst) {
+			IntSet useIntset = new IntSet(2);
+			IntSet defIntset = new IntSet(2);
+			if (inst.source.isGeneralRegister()){
+				if(inst.srcDef){
+					def.put(inst,);
+				}
+				else if (inst.srcUse){
+					use.put(inst.source,);
+				}
+			}
+
+			if (inst.destination.isGeneralRegister()){
+				if(inst.destDef){
+					def.put(inst.destination,);
+				}else if (inst.destUse){
+					use.put(inst.destination,);
+				}
+			}
 			return null;
 		}
 
