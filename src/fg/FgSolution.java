@@ -21,6 +21,7 @@ public class FgSolution{
 		this.def = new HashMap< NasmInst, IntSet>();
 		this.in =  new HashMap< NasmInst, IntSet>();
 		this.out = new HashMap< NasmInst, IntSet>();
+		new UseAndDefHandler();
 	}
 
 	public void affiche(String baseFileName){
@@ -42,6 +43,150 @@ public class FgSolution{
 		out.println("iter num = " + iterNum);
 		for(NasmInst nasmInst : this.nasm.listeInst){
 			out.println("use = "+ this.use.get(nasmInst) + " def = "+ this.def.get(nasmInst) + "\tin = " + this.in.get(nasmInst) + "\t \tout = " + this.out.get(nasmInst) + "\t \t" + nasmInst);
+		}
+	}
+
+	private class UseAndDefHandler implements NasmVisitor<Void>{
+
+		public UseAndDefHandler(){
+			for (NasmInst inst : nasm.listeInst) {
+				inst.accept(this);
+			}
+		}
+
+		@Override
+		public Void visit(NasmAdd inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmCall inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmDiv inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJe inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJle inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJne inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmMul inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmOr inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmCmp inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmInst inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJge inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJl inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmNot inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmPop inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmRet inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmXor inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmAnd inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJg inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmJmp inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmMov inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmPush inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmSub inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmEmpty inst) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmAddress operand) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmConstant operand) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmLabel operand) {
+			return null;
+		}
+
+		@Override
+		public Void visit(NasmRegister operand) {
+			return null;
 		}
 	}
 }
