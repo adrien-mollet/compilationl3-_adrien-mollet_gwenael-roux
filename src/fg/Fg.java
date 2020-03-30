@@ -351,6 +351,14 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmJle inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
@@ -391,26 +399,60 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmOr inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmCmp inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmJge inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmJl inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmNot inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
@@ -438,16 +480,36 @@ public class Fg implements NasmVisitor <Void> {
 
         @Override
         public Void visit(NasmXor inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmAnd inst) {
+            Node currentNode = inst2Node.get(inst);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode);
+            }
             return null;
         }
 
         @Override
         public Void visit(NasmJg inst) {
+            Node currentNode = inst2Node.get(inst);
+            Node destinationNode1 = inst2Node.get(label2Inst.get(inst.address.toString()));
+            graph.addEdge(currentNode,destinationNode1);
+            int index = graphNodes.indexOf(currentNode);
+            if (index+1 < graphNodes.size()){
+                Node destinationNode2 = graphNodes.get(index+1);
+                graph.addEdge(currentNode,destinationNode2);
+            }
             return null;
         }
 
