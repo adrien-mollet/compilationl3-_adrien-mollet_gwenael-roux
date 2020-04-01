@@ -163,22 +163,27 @@ public class FgSolution{
 
 		@Override
 		public Void visit(NasmSub inst) {
-			IntSet useIntset = new IntSet(2);
-			IntSet defIntset = new IntSet(2);
+			def.put(inst,new IntSet(fg.inst2Node.size()));
+			use.put(inst,new IntSet(fg.inst2Node.size()));
+
+			NasmRegister src = (NasmRegister) inst.source;
+
+
 			if (inst.source.isGeneralRegister()){
-				if(inst.srcDef){
-					def.put(inst,);
+				if(inst.srcDef || inst.destDef){
+					def.put(inst,new IntSet(fg.inst2Node.size()));
 				}
-				else if (inst.srcUse){
-					use.put(inst.source,);
+				if (inst.srcUse || inst.destUse){
+					use.put(inst,new IntSet(fg.inst2Node.size()));
 				}
 			}
 
 			if (inst.destination.isGeneralRegister()){
 				if(inst.destDef){
-					def.put(inst.destination,);
-				}else if (inst.destUse){
-					use.put(inst.destination,);
+					def.put(inst,new IntSet(fg.inst2Node.size()));
+				}
+				if (inst.destUse){
+					use.put(inst,new IntSet(fg.inst2Node.size()));
 				}
 			}
 			return null;
