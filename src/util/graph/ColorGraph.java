@@ -100,8 +100,25 @@ public class ColorGraph {
     /* à la fin du processus, le graphe peut ne pas être vide, il s'agit des temporaires qui ont au moins k voisin */
     /*-------------------------------------------------------------------------------------------------------------*/
 
-    public int simplification()
+    public void simplification()
     {
+        int nbPrecolor = getNbPrecolor();
+        int N = R - nbPrecolor;
+        boolean modif = true;
+        while(pile.size() != N && modif){
+            modif = false;
+            NodeList list = G.nodes();
+            for (NodeList nl=list; nl!=null; nl=nl.tail){
+                int t = nl.head.mykey;
+                if (!enleves.isMember(t)){
+                    if (nbVoisins(t) < K && couleur[t] == NOCOLOR){
+                        pile.push(t);
+                        enleves.add(t);
+                        modif = true;
+                    }
+                }
+            }
+        }
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
@@ -130,6 +147,14 @@ public class ColorGraph {
 	}
     }
     
-    
+    private int getNbPrecolor(){
+        int nbPrecolor = 0;
+        for (int i:couleur){
+            if(i != NOCOLOR){
+                ++nbPrecolor;
+            }
+        }
+        return nbPrecolor;
+    }
 
 }
