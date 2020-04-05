@@ -102,8 +102,6 @@ public class ColorGraph {
 
     public int simplification()
     {
-        R-
-        boolean modif = true;
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
