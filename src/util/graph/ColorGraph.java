@@ -126,6 +126,17 @@ public class ColorGraph {
     
     public void debordement()
     {
+        while(pile.size() != R){
+            for (Node s : G.nodeArray()) {
+                if (!enleves.isMember(s.mykey) && !deborde.isMember(s.mykey) && couleur[s.mykey] == NOCOLOR){
+                    pile.push(s.mykey);
+                    deborde.add(s.mykey);
+                    break;
+                }
+            }
+
+            simplification();
+        }
     }
 
 

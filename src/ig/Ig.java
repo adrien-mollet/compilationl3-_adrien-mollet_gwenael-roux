@@ -2,6 +2,7 @@ package ig;
 
 import fg.*;
 import nasm.*;
+import scala.Int;
 import util.graph.*;
 import util.intset.*;
 import java.util.*;
@@ -25,7 +26,8 @@ public class Ig {
 	}
 
 	public void construction() {
-
+		constructNodes();
+		constructEdges();
 	}
 
 	public int[] getPrecoloredTemporaries() {
@@ -34,6 +36,34 @@ public class Ig {
 
 	public void allocateRegisters() {
 
+	}
+
+	private void constructNodes(){
+		for (int i = 0; i < regNb; ++i){
+			int2Node[i] = graph.newNode();
+		}
+	}
+
+	private void constructEdges(){
+		for (NasmInst inst : nasm.listeInst){
+			IntSet in = fgs.in.get(inst);
+			constructEdgesFromIntSet(in);
+
+			IntSet out = fgs.out.get(inst);
+			constructEdgesFromIntSet(out);
+		}
+	}
+
+	private void constructEdgesFromIntSet(IntSet intSet) {
+		for (int r1 = 0; r1 < regNb; ++r1) {
+			for (int r2 = 0; r2 < regNb; ++r2){
+				if (r1 != r2){
+					if (intSet.isMember(r1) && intSet.isMember(r2)){
+						graph.addEdge(int2Node[r1], int2Node[r2]);
+					}
+				}
+			}
+		}
 	}
 
 
