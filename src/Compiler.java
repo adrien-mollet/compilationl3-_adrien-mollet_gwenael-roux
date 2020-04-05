@@ -55,11 +55,14 @@ public class Compiler
 			System.out.println("[PRINT TS]");
 			table.afficheTout(baseName);
 
+			/*
 			System.out.print("[EXEC SA] ");
 			SaEval saEval = new SaEval(saRoot, table);
 
 			System.out.println("[SA OUT]");
 			saEval.affiche(baseName);
+
+			 */
 
 			System.out.print("[BUILD C3A] ");
 			C3a c3a = new Sa2c3a(saRoot,table).getC3a();
@@ -85,6 +88,7 @@ public class Compiler
 			FgSolution fgSolution = new FgSolution(nasm, fg);
 			fgSolution.affiche(baseName);
 
+			/*
 			System.out.print("[BUILD IG] ");
 			Ig ig = new Ig(fgSolution);
 
@@ -96,6 +100,8 @@ public class Compiler
 
 			System.out.println("[PRINT NASM]");
 			nasm.affiche(baseName);
+			*/
+
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
