@@ -44,12 +44,11 @@ public class ColorGraph {
             couleur[i] = NOCOLOR;
         }
 
-        int i = 0;
         for(NodeList nl=G.nodes(); nl!=null; nl=nl.tail){
             Node n = nl.head;
-            IntSet C = couleursVoisins(i);
+            IntSet C = couleursVoisins(n.mykey);
             if (C.getSize() != K){
-                choisisCouleur(C);
+                couleur[n.mykey] = choisisCouleur(C);
             }
         }
     }
@@ -60,6 +59,14 @@ public class ColorGraph {
     
     public IntSet couleursVoisins(int t)
     {
+        Node n = int2Node[t];
+        int nbVoisins = nbVoisins(t);
+        IntSet result = new IntSet(nbVoisins);
+        for(NodeList nl=n.adj(); nl!=null; nl=nl.tail){
+            int c = couleur[nl.head.mykey];
+            result.add(c);
+        }
+        return result;
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
@@ -82,6 +89,12 @@ public class ColorGraph {
     
     public int nbVoisins(int t)
     {
+        Node n = int2Node[t];
+        int result = 0;
+        for(NodeList nl=n.adj(); nl!=null; nl=nl.tail){
+            ++result;
+        }
+        return result;
     }
 
     /*-------------------------------------------------------------------------------------------------------------*/
@@ -93,6 +106,8 @@ public class ColorGraph {
 
     public int simplification()
     {
+        R-
+        boolean modif = true;
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
