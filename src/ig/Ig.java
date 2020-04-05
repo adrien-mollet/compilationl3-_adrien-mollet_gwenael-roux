@@ -29,7 +29,31 @@ public class Ig {
 	}
 
 	public int[] getPrecoloredTemporaries() {
-		return null;
+		int[] precolored = new int[nasm.getTempCounter()];
+
+		for (NasmInst inst : nasm.listeInst){
+			getPrecoloration(inst.source, precolored);
+			getPrecoloration(inst.destination, precolored);
+		}
+
+		return precolored;
+	}
+
+	private void getPrecoloration(NasmOperand operand, int[] precolored) {
+		if (operand.isGeneralRegister()){
+			NasmRegister register = (NasmRegister) operand;
+			precolored[register.val] = register.color;
+		} else if (operand instanceof NasmAddress) {
+			NasmAddress address = (NasmAddress) operand;
+			if (address.base.isGeneralRegister()){
+				NasmRegister registerBase = (NasmRegister) address.base;
+				precolored[registerBase.val] = registerBase.color;
+			}
+			if (address.offset!= null && address.offset.isGeneralRegister()){
+				NasmRegister registerOffset = (NasmRegister) address.offset;
+				precolored[registerOffset.val] = registerOffset.color;
+			}
+		}
 	}
 
 	public void allocateRegisters() {
