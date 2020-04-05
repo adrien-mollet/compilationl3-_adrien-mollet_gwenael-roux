@@ -13,7 +13,8 @@ import ig.*;
 
 public class Compiler
 {
-    public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		PushbackReader br = null;
 		String baseName = null;
 		int RegisterNb = 4;
@@ -21,11 +22,13 @@ public class Compiler
 			if (0 < args.length) {
 				br = new PushbackReader(new FileReader(args[0]));
 				baseName = removeSuffix(args[0], ".l");
-			} else {
+			}
+			else{
 				System.out.println("il manque un argument");
 				System.exit(1);
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 		try {
@@ -93,7 +96,8 @@ public class Compiler
 
 			System.out.println("[PRINT NASM]");
 			nasm.affiche(baseName);
-		} catch (Exception e) {
+		}
+		catch(Exception e){
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
