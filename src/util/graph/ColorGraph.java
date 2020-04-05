@@ -57,7 +57,7 @@ public class ColorGraph {
     {
         Node n = int2Node[t];
         int nbVoisins = nbVoisins(t);
-        IntSet result = new IntSet(nbVoisins);
+        IntSet result = new IntSet(R);
         for(NodeList nl=n.adj(); nl!=null; nl=nl.tail){
             int c = couleur[nl.head.mykey];
             if (c != NOCOLOR)
@@ -89,9 +89,10 @@ public class ColorGraph {
         Node n = int2Node[t];
         int result = 0;
         for(NodeList nl=n.adj(); nl!=null; nl=nl.tail){
-            ++result;
+            if (!enleves.isMember(nl.head.mykey))
+                ++result;
         }
-        return result;
+        return result/2;
     }
 
     /*-------------------------------------------------------------------------------------------------------------*/
@@ -127,10 +128,12 @@ public class ColorGraph {
     
     public void debordement()
     {
+
         while(pile.size() != R-getNbPrecolor()){
             for (Node s : G.nodeArray()) {
                 if (!enleves.isMember(s.mykey) && !deborde.isMember(s.mykey) && couleur[s.mykey] == NOCOLOR){
                     pile.push(s.mykey);
+                    enleves.add(s.mykey);
                     deborde.add(s.mykey);
                     break;
                 }
@@ -139,7 +142,6 @@ public class ColorGraph {
             simplification();
         }
     }
-
 
     /*-------------------------------------------------------------------------------------------------------------*/
     /*-------------------------------------------------------------------------------------------------------------*/
