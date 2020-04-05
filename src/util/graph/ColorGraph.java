@@ -60,7 +60,8 @@ public class ColorGraph {
         IntSet result = new IntSet(nbVoisins);
         for(NodeList nl=n.adj(); nl!=null; nl=nl.tail){
             int c = couleur[nl.head.mykey];
-            result.add(c);
+            if (c != NOCOLOR)
+                result.add(c);
         }
         return result;
     }
