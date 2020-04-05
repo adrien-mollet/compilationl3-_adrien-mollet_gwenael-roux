@@ -40,12 +40,8 @@ public class ColorGraph {
     
     public void selection()
     {
-        for (int i = 0; i < R ; i++) {
-            couleur[i] = NOCOLOR;
-        }
-
-        for(NodeList nl=G.nodes(); nl!=null; nl=nl.tail){
-            Node n = nl.head;
+        while (!pile.empty()){
+            Node n = int2Node[pile.pop()];
             IntSet C = couleursVoisins(n.mykey);
             if (C.getSize() != K){
                 couleur[n.mykey] = choisisCouleur(C);
