@@ -126,7 +126,7 @@ public class ColorGraph {
     
     public void debordement()
     {
-        while(pile.size() != R){
+        while(pile.size() != R-getNbPrecolor()){
             for (Node s : G.nodeArray()) {
                 if (!enleves.isMember(s.mykey) && !deborde.isMember(s.mykey) && couleur[s.mykey] == NOCOLOR){
                     pile.push(s.mykey);

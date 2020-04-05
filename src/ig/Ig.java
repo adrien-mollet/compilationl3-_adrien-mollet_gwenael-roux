@@ -2,10 +2,8 @@ package ig;
 
 import fg.*;
 import nasm.*;
-import scala.Int;
 import util.graph.*;
 import util.intset.*;
-import java.util.*;
 import java.io.*;
 
 public class Ig {
