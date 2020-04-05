@@ -40,6 +40,18 @@ public class ColorGraph {
     
     public void selection()
     {
+        for (int i = 0; i < R ; i++) {
+            couleur[i] = NOCOLOR;
+        }
+
+        int i = 0;
+        for(NodeList nl=G.nodes(); nl!=null; nl=nl.tail){
+            Node n = nl.head;
+            IntSet C = couleursVoisins(i);
+            if (C.getSize() != K){
+                choisisCouleur(C);
+            }
+        }
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
@@ -56,6 +68,12 @@ public class ColorGraph {
     
     public int choisisCouleur(IntSet colorSet)
     {
+        for (int i = 0; i < K ; i++) {
+            if(!colorSet.isMember(i)){
+                return i;
+            }
+        }
+        return NOCOLOR;
     }
     
     /*-------------------------------------------------------------------------------------------------------------*/
