@@ -88,7 +88,6 @@ public class Compiler
 			FgSolution fgSolution = new FgSolution(nasm, fg);
 			fgSolution.affiche(baseName);
 
-			/*
 			System.out.print("[BUILD IG] ");
 			Ig ig = new Ig(fgSolution);
 
@@ -100,7 +99,6 @@ public class Compiler
 
 			System.out.println("[PRINT NASM]");
 			nasm.affiche(baseName);
-			*/
 
 		}
 		catch(Exception e){

@@ -40,7 +40,9 @@ public class Ig {
 	}
 
 	private void getPrecoloration(NasmOperand operand, int[] precolored) {
-		if (operand.isGeneralRegister()){
+		if (operand == null){
+			return;
+		} else if (operand.isGeneralRegister()){
 			NasmRegister register = (NasmRegister) operand;
 			precolored[register.val] = register.color;
 		} else if (operand instanceof NasmAddress) {
@@ -57,7 +59,38 @@ public class Ig {
 	}
 
 	public void allocateRegisters() {
+		ColorGraph cg = new ColorGraph(graph, 4, getPrecoloredTemporaries());
+		cg.coloration();
 
+		for (NasmInst inst : nasm.listeInst){
+			allocateRegister(inst.source, cg.couleur);
+			allocateRegister(inst.destination, cg.couleur);
+		}
+	}
+
+	public void allocateRegister(NasmOperand operand, int[] couleurs){
+		if (operand == null){
+			return;
+		} else if (operand.isGeneralRegister()){
+			NasmRegister register = (NasmRegister) operand;
+			if (register.color == Nasm.REG_UNK){
+				register.colorRegister(couleurs[register.val]);
+			}
+		} else if (operand instanceof NasmAddress) {
+			NasmAddress address = (NasmAddress) operand;
+			if (address.base.isGeneralRegister()){
+				NasmRegister registerBase = (NasmRegister) address.base;
+				if (registerBase.color == Nasm.REG_UNK){
+					registerBase.colorRegister(couleurs[registerBase.val]);
+				}
+			}
+			if (address.offset!= null && address.offset.isGeneralRegister()){
+				NasmRegister registerOffset = (NasmRegister) address.offset;
+				if (registerOffset.color == Nasm.REG_UNK){
+					registerOffset.colorRegister(couleurs[registerOffset.val]);
+				}
+			}
+		}
 	}
 
 	private void constructNodes(){
