@@ -50,21 +50,25 @@ public class FgSolution{
 	}
 
 	private void addRegister(NasmInst inst){
-		if (inst.source != null && inst.source.isGeneralRegister() && inst.source instanceof NasmRegister ){
-			NasmRegister src = (NasmRegister) inst.source;
-			if (src.color != Nasm.REG_EBP && src.color != Nasm.REG_ESP){
-				if(inst.srcDef){
-					def.get(inst).add(src.val);
-				}
-				if (inst.srcUse ){
-					use.get(inst).add(src.val);
-				}
-			}
+		addDestSource(inst.source, inst);
+		addDestSource(inst.destination, inst);
+
+		if (inst.source instanceof NasmAddress){
+			NasmAddress src = (NasmAddress) inst.source;
+			addDestSource(src.base, inst);
+			addDestSource(src.offset, inst);
+		}
+		if (inst.destination instanceof NasmAddress){
+			NasmAddress dest = (NasmAddress) inst.destination;
+			addDestSource(dest.base, inst);
+			addDestSource(dest.offset, inst);
 		}
 
+	}
 
-		if (inst.destination != null && inst.destination.isGeneralRegister() && inst.destination instanceof NasmRegister){
-			NasmRegister dest = (NasmRegister) inst.destination;
+	private void addDestSource(NasmOperand operand, NasmInst inst){
+		if (operand != null && operand.isGeneralRegister() && operand instanceof NasmRegister){
+			NasmRegister dest = (NasmRegister) operand;
 			if (dest.color != Nasm.REG_EBP && dest.color != Nasm.REG_ESP){
 				if(inst.destDef){
 					def.get(inst).add(dest.val);
@@ -74,7 +78,6 @@ public class FgSolution{
 				}
 			}
 		}
-
 	}
 
 	private class UseAndDefHandler implements NasmVisitor<Void>{
